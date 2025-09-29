@@ -1,0 +1,57 @@
+server:
+  port: ${SERVER_PORT:8081}
+  shutdown: graceful
+
+management:
+  endpoint:
+    metrics:
+      access: read_only
+  endpoints:
+    web:
+      exposure:
+        include:
+          - 'info'
+          - 'health'
+          - 'loggers'
+          - 'prometheus'
+  health:
+    ldap:
+      enabled: false
+spring:
+  main:
+    web-application-type: reactive
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  task:
+    execution:
+      shutdown:
+        await-termination: true
+        await-termination-period: 30s
+    scheduling:
+      pool:
+        size: 10
+      virtual-threads: true
+      shutdown:
+        await-termination: true
+        await-termination-period: 30s
+  r2dbc:
+    url: r2dbc:pool:postgresql://${db.host}:${db.port}/${db.name}
+    username: ${db.user}
+    password: ${db.password}
+    properties:
+      maxSize: ${R2DBC_POOL_MAX_SIZE:20}
+      maxAcquireTime: ${R2DBC_POOL_MAX_ACQUIRE_TIME:PT10S}
+      maxIdleTime: ${R2DBC_POOL_MAX_IDLE_TIME:PT2M}
+      backgroundEvictionInterval: ${R2DBC_POOL_BACKGROUND_EVICTION_INTERVAL:PT1M}
+logging:
+  level:
+    root: INFO
+    ru.emi.taskrunner: ${LOGGING_LEVEL:DEBUG}
+    io.r2dbc.postgresql.QUERY: INFO
+    io.r2dbc.postgresql.PARAM: INFO
+db:
+  host: ${POSTGRES_HOST:localhost}
+  port: ${POSTGRES_PORT:5432}
+  name: ${POSTGRES_DB:crud}
+  user: ${POSTGRES_USER:postgres}
+  password: ${POSTGRES_PASSWORD:postgres}
