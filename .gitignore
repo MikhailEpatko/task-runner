@@ -18,9 +18,4 @@ out/
 *.ij
 **/.DS_Store
 
-application-local.yml
-postgres-idm
-postgres-keycloak
-*.run.xml
-/docker/storage/
 qodana.yaml
