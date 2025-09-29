@@ -1,4 +1,4 @@
-package ru.emi.taskrunner.scheduled.tasks
+package ru.emi.taskrunner.scheduled
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

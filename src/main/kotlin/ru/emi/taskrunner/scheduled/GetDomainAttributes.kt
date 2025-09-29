@@ -1,4 +1,4 @@
-package ru.emi.taskrunner.scheduled.tasks
+package ru.emi.taskrunner.scheduled
 
 import kotlinx.coroutines.delay
 import org.slf4j.Logger
@@ -9,13 +9,13 @@ import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 
 @Service
-class SyncDomainAttributes : SchedulingTask() {
+class GetDomainAttributes : SchedulingTask() {
     override val name: String = javaClass.simpleName
     private val log: Logger = LoggerFactory.getLogger(javaClass.simpleName)
 
     override suspend fun execute() {
         log.info("--== $name ==--")
-        delay(7.seconds)
-        check(Random.nextInt() % 7 != 0) { "Не повезло" }
+        delay(5.seconds)
+        check(Random.nextInt() % 5 != 0) { "Не повезло" }
     }
 }

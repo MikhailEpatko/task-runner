@@ -16,7 +16,7 @@ import org.springframework.scheduling.config.TriggerTask
 import org.springframework.scheduling.support.CronTrigger
 import ru.emi.taskrunner.common.SchedulingTask
 import ru.emi.taskrunner.common.enums.TaskActivityStatus
-import ru.emi.taskrunner.scheduled.tasks.RunTask
+import ru.emi.taskrunner.scheduled.RunTask
 import ru.emi.taskrunner.task.model.TaskEntity
 import ru.emi.taskrunner.task.repository.TaskRepository
 import java.time.Duration
